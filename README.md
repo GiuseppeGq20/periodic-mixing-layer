@@ -1,5 +1,16 @@
+# PERIODIC MIXING LAYER
+
+- use gmsh's python API to generate a 2D mesh (mesh_gen dir)
+- linear stability scripts
+- openfoam case setup (common)
+
 # TODO
+- orr-sommerfield scriptù
 
 # case
-- foamlib script to setup the case programmatically
-- setup BC
+- common base setup
+- automated scripts
+
+## physical parameters
+- TDB
+- 

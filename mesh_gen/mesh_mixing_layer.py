@@ -31,7 +31,7 @@ if __package__ in (None, ""):
 from mesh_gen.utils import *
 
 # ---- GEOMETRIC DATA ---- #
-H = 1
+H = 5
 H_INTERFACE = 0.5 * H
 L = 1
 W = 0.1
@@ -39,7 +39,7 @@ W = 0.1
 h = [0, H_INTERFACE, H]
 
 # ---- MESH SIZING PARAMETERS ---- #
-N_POINTS = 20
+N_POINTS = 128
 N_LIQUID = N_POINTS
 N_GAS = N_POINTS
 N_X = N_POINTS
@@ -63,11 +63,11 @@ curve_loop = quad_loops(l1, l2, lh[:-1], lh[1:])
 for l_h in lh:
     gmsh.model.geo.mesh.setTransfiniteCurve(l_h, N_X)
 # vertical lines
-spacing = [N_LIQUID, N_GAS]
-for n, l_v in zip(spacing, l1):
-    gmsh.model.geo.mesh.setTransfiniteCurve(l_v, n)
-for n, l_v in zip(spacing, l2):
-    gmsh.model.geo.mesh.setTransfiniteCurve(l_v, n)
+
+for l in [l1[0], l2[0]]:
+    gmsh.model.geo.mesh.setTransfiniteCurve(l, N_LIQUID, "Progression", 1.1)
+for l in [l1[1], l2[1]]:
+    gmsh.model.geo.mesh.setTransfiniteCurve(l, N_GAS, "Progression", -1.1)
 
 # 2D entities
 
